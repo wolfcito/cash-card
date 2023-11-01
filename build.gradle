@@ -18,13 +18,14 @@ repositories {
 allprojects {
     project.ext.springbootweb = 'org.springframework.boot:spring-boot-starter-web:3.1.5'
     project.ext.springboottest = 'org.springframework.boot:spring-boot-starter-test:3.1.5'
+    project.ext.springbootdev = 'org.springframework.boot:spring-boot-devtools:3.1.5'
 }
 
 dependencies {
     implementation project.ext.springbootweb
     testImplementation project.ext.springboottest
+    implementation project(':onecard')
 
-    implementation project(':experience')
 }
 
 tasks.named('test') {
