@@ -20,9 +20,9 @@ final class CashCardJsonTest {
     private JacksonTester<CashCard> json;
 
     @Test
-    public void cashCardSerializationTest() throws IOException {
+    void cashCardSerializationTest() throws IOException {
         CashCard cashCard = new CashCard(99L, 123.45);
-        assertThat(json.write(cashCard)).isStrictlyEqualToJson("expected.json");
+        assertThat(json.write(cashCard)).isStrictlyEqualToJson("cash_card/domain/expected.json");
         assertThat(json.write(cashCard)).hasJsonPathNumberValue("@.id");
         assertThat(json.write(cashCard)).extractingJsonPathNumberValue("@.id")
                 .isEqualTo(99);
@@ -40,7 +40,8 @@ final class CashCardJsonTest {
                "amount":123.45
            }
            """;
-        assertThat(json.parse(expected))
+
+        assertThat(json.parseObject(expected))
                 .isEqualTo(new CashCard(99L, 123.45));
         assertThat(json.parseObject(expected).id()).isEqualTo(99);
         assertThat(json.parseObject(expected).amount()).isEqualTo(123.45);
